@@ -1,24 +1,31 @@
 ---
 name: niu-lai-translator
 description: >-
-  Reconstructs any supplied image as exaggeratedly failed primitive low-poly 3D:
-  extremely sparse meshes, distorted proportions, stiff broken-looking posing,
-  visible garment/body clipping, crude faces, repeated tiny textures, reused sparse
-  assets, and naive lighting while preserving only semantic and compositional anchors.
-  Use when users invoke 牛来低模转译,
-  niu-lai-translator, 反向出圈画质, 低画质重制, 粗糙人物低模, 早期 3D 游戏截图,
-  primitive folk CGI, bootleg CGI, or ask to make an image look intentionally
+  Reconstructs any supplied image as exaggeratedly cheap, badly produced bootleg CGI:
+  coarse continuous low-detail character meshes with visually smooth simplified surfaces, visibly
+  faceted low-poly backgrounds, distorted proportions, vacant misdirected eyes,
+  simplified continuous anatomy, obvious bone-weight failures, local clipping,
+  crude low-resolution baked short-fur bump strokes,
+  moderately repeated background textures with occasional axis stretching, reused assets,
+  flat cheap lighting, and clean source-led color while
+  preserving only minimal semantic anchors while freely simplifying composition and styling.
+  Use when users invoke 牛来粗制 CGI 转译, 牛来低模转译,
+  niu-lai-translator, 反向出圈画质, 低画质重制, 粗制 CGI, 粗糙人物低模, 早期 3D 游戏截图,
+  crude CGI, bootleg CGI, or ask to make an image look intentionally
   cheap, awkward, poorly modeled, poorly lit, and less faithfully reproduced.
 ---
 
-# Niu Lai Translator / 牛来低模转译器
+# Niu Lai Translator / 牛来粗制 CGI 转译器
 
-> Core principle: **保留大关系，主动放弃精致还原；让低质量来自整套生产能力，而不是后期滤镜。**
+> Core principle: **保留大关系，主动放弃精致还原；让低质量来自各生产环节彼此失调，而不是后期滤镜或低模风格。**
 
 Rebuild the source as a scene made by a sincere but technically limited early-3D
 team. Keep the image readable and structurally related to the source while making
-topology, proportions, rigging, collision, eyes, textures, assets, lighting, and
-rendering visibly fail. A merely stylish or attractive low-poly result is a failure.
+modeling, proportions, rigging, collision, materials, assets, lighting, and rendering
+visibly fail. Character meshes remain far below refined animation quality, but their
+character surfaces must read as continuous simplified anatomy rather than separated
+primitive segments. Low quality comes from crude proportions, stiff silhouette, poor
+fitting, bad deformation and rigging—not puppet joints. The background may remain plainly faceted low-poly.
 
 ## Workflow
 
@@ -26,9 +33,9 @@ Track this sequence:
 
 ```text
 - [ ] 1. Confirm that an input image exists; request one if absent
-- [ ] 2. Read explicit parameters and infer the rest from the primitive defaults
-- [ ] 3. Extract hard anchors: subject count/type, layout, semantic action, camera, color blocks
-- [ ] 4. Release exact anatomy, proportions, joint angles, silhouette, and collision fidelity
+- [ ] 2. Read explicit parameters and infer the rest from the bootleg-CGI defaults
+- [ ] 3. Extract minimal anchors: subject count/type, relationship, action verb, one or two color cues
+- [ ] 4. Release exact anatomy, proportions, joint angles, surface quality, and collision fidelity
 - [ ] 5. Build one source-based image-edit prompt in the required order
 - [ ] 6. Generate/edit unless the user asked for prompts or options only
 - [ ] 7. Inspect against the inverted quality gate; retry polished results
@@ -45,51 +52,91 @@ Track this sequence:
 - Ask at most one question only when a missing decision materially changes output.
 - Use an image-edit tool that receives the source image. Include every target image
   through the tool's supported reference input.
-- Treat this as reconstruction, not compression, pixelation, or a polygon overlay.
+- Treat this as reconstruction, not compression, pixelation, faceting, or a low-poly overlay.
 
-## Analyze broad anchors internally
+## Analyze minimal anchors internally
 
 Identify without reporting every item unless asked:
 
-- **Subjects:** count, broad type, large hairstyle, garment category, dominant color
-  blocks, large props, semantic action, rough facing direction, and social relation.
-- **Composition:** crop, camera height, perspective, horizon, relative scale,
-  spacing, foreground/midground/background, and occlusion.
+- **Subjects:** count, broad type, relationship, role, action verb, and indispensable prop.
+- **Loose composition:** retain only enough left/right or depth logic to keep the scene
+  readable; crop, camera height, spacing, overlap, relative scale, and silhouette may change.
 - **Scene:** only the major terrain, architecture, or stage masses required for
   the image to remain recognizable.
-- **Palette:** three to six source colors worth retaining.
+- **Color cues:** retain one or two dominant source colors; exact costume distribution may change.
 - **Deliberately mutable structure:** limb length, head/body ratio, torso width,
   animal proportions, exact joint angles, balance, silhouette accuracy, garment fit,
   and clean separation between intersecting meshes.
 - **Discardable detail:** fine facial likeness, subtle expression, hair strands,
   embroidery, microtexture, unique background assets, small signage, and decoration.
 
-## Use primitive defaults
+## Use bootleg-CGI defaults
 
-Use `primitive_folk_cgi` unless the user requests a gentler translation. Read
+Use `crude_bootleg_cgi` unless the user requests a gentler translation. Read
 [references/style-system.md](references/style-system.md) when selecting another preset.
 
 ```yaml
-preset: primitive_folk_cgi
+preset: crude_bootleg_cgi
 reconstruction_strength: extreme
-anchor_lock: strict
-identity_lock: medium
-detail_budget: very_low
-geometry: primitive_low_poly
-polygon_budget: extremely_low
+anchor_lock: minimal_semantic
+composition_lock: loose_restage_allowed
+identity_lock: low_to_medium
+detail_budget: low
+skill_level_reference: one_year_animation_student
+simplification_policy: simplify_everything_nonessential
+geometry: coarse_continuous_character_mesh
+mesh_detail_budget: low_to_medium
+animal_mesh_detail: moderately_reduced_not_extreme
+animal_muscle_definition: suppressed_flattened
+animal_body_forms: simple_barrel_torso_uniform_limbs
+surface_smoothing: continuous_shading_without_visible_character_facets
+primitive_abstraction: simple_forms_blended_into_continuous_body
+joint_construction: continuous_anatomical_mass_no_puppet_seams
+clothing_geometry: simplified_continuous_garments
+wardrobe_fidelity: category_and_color_hint_only
+styling_fidelity: deliberately_broken
+manual_modeling_artifacts: heavy
+aesthetic_failure: severe_unattractive_amateur_character_design
+face_construction: pasted_primitive_features
+eye_style: humanlike_half_lidded_unfocused
+background_geometry: visibly_faceted_low_poly
 face_geometry: clumsy_asymmetric
-gaze_quality: stiff_misaligned
+gaze_quality: vacant_badly_aimed
 proportion_fidelity: deliberately_broken
 pose_lock: semantic_action_only
-pose_quality: stiff_failed_rig
+pose_quality: symbolic_gesture_failed_rig
+rig_failure_strength: obvious
+bone_weight_errors: 2_to_4_major_joints
 collision_quality: visible_clipping
-clipping_count: 1_to_3
-texture_resolution: very_low
-material_model: diffuse_only_mismatched
-texture_repetition: obvious
+clipping_count: 2_to_4
+texture_resolution: low
+material_model: flat_diffuse_with_fur_bump
+surface_relief_scope: fur_and_hair_only
+bump_scale: short_irregular_baked_fur_strokes_only
+fur_bump_depth: shallow_visible_controlled
+fur_bump_density: medium_uneven
+fur_bump_shape: short_tapered_grooves_and_soft_ridges
+fur_surface_target: cheap_lowres_baked_fur_normal
+fur_uv_behavior: locally_directional_with_bad_stretch
+fur_representation: bump_normal_only_fake_no_hair_geometry
+fur_diffuse: flat_solid_color_without_drawn_hairs
+fur_silhouette: unchanged_solid_mesh
+material_reference_scope: texture_pattern_only_never_content
+texture_repetition: noticeable
 asset_reuse: heavy
 background_detail: sparse
-lighting: naive_single_light
+background_texture: lowres_repeated_diffuse
+background_uv_mapping: nonadaptive_local_xyz
+background_texture_scale: enlarged_tiles
+background_texture_variation: limited_hue_value_offsets
+background_uv_distortion: occasional_z_stretch
+tree_construction: crossed_vertical_ellipse_cards
+rain_style: source_only_white_line_streaks
+palette: source_anchored_clean
+color_cleanliness: clean_not_muddy
+lighting: flat_unskilled_single_light
+environment_lighting_link: disconnected
+sky_behavior: pasted_backdrop_no_gi
 post_effects: subtle_capture_noise
 text_mode: none
 ratio: source_ratio
@@ -97,23 +144,25 @@ ratio: source_ratio
 
 These are intentional defaults. Correct anatomy, natural poses, perfectly clean
 collision in contact-rich scenes, coherent PBR materials, high facial fidelity,
-rich backgrounds, unique textures, attractive eyes, or professional lighting are
-failures unless requested.
+rich backgrounds, unique textures, attractive eyes, muddy color grading, or lighting
+that correctly inherits the sky are failures unless requested.
 
-## Preserve meaning, not anatomy
+## Preserve only minimal meaning
 
-- Strictly preserve subject count and type, broad left-to-right arrangement, crop,
-  camera, scene category, semantic action, major props, and dominant color blocks.
+- Strictly preserve only subject count/type, relationship, action verb, indispensable
+  prop, and one or two color cues. Composition, crop, camera, spacing, overlap, costume
+  design, makeup, styling, and attractive silhouette may be broken and crudely restaged.
 - Preserve what the action means, not the exact source pose. A wave should remain a
   wave and an embrace an embrace, but elbows, shoulders, wrists, knees, weight,
   balance, and torso twist should become stiff, simplified, and slightly wrong.
-- Preserve identity anchors such as species, hair mass, clothing category, and
-  markings, but do not lock the source silhouette or body proportions.
+- Preserve only broad identity anchors such as species/age category, one hair cue,
+  one outfit color, and subject role. Garment construction, makeup, ornaments, exact
+  hair design, source silhouette, and body proportions are disposable.
 - Deliberately change human and animal proportions. Use mismatched limb lengths,
   oversized or undersized heads, short rigid necks, broad or pinched torsos, chunky
   joints, crude paws/hooves, or uneven body masses. Keep subjects recognizable and
   non-horrific; do not change a real person's apparent age, ethnicity, or body category.
-- Introduce one to three readable collision failures when people, animals, clothing,
+- Introduce two to four readable collision failures when people, animals, clothing,
   or props make contact: sleeves may sink into elbows, upper arms may cut through
   shoulders or loose clothing, hands may intersect sleeves or held objects, and fur
   or garments may penetrate nearby meshes. Do not hide faces, erase whole limbs,
@@ -129,32 +178,125 @@ failures unless requested.
 
 Apply all layers together:
 
-1. **Topology:** use an extremely low polygon budget with large planar sections.
-   A head, torso, or animal body must read as a handful of crude masses rather than
-   a smooth mesh covered in small facets. Avoid silhouette-smoothing support loops.
-2. **Proportions:** break source-faithful anatomy while keeping subject category and
-   action readable. Prefer visibly mismatched primitive parts over elegant caricature.
-3. **Pose and rigging:** reduce each joint to one crude rotation. Use locked torsos,
-   kinked elbows, elevated shoulders, straight wrists, planted feet, poor balance,
-   floating hands, and weak contact. Avoid natural counter-pose and weight transfer.
-4. **Collision:** show a small number of intentional mesh penetrations at shoulders,
+1. **Modeling:** build each character as a coarse but continuous low-detail mesh, using
+   enough geometry and smooth shading that faces, limbs, clothes, and joint transitions
+   do not show polygon fields or separate toy parts. Simple forms may guide construction,
+   but blend them into one readable body volume. Shoulders flow into upper arms; elbows
+   and knees remain continuous narrowed bends; wrists and ankles connect without rings,
+   sockets, gaps, detached cylinders, or visible insertion seams. Keep anatomy generic,
+   stiff, asymmetrical, and poorly proportioned, but not mechanical or mannequin-like.
+   Hair buns may remain spheres and eyeballs may use hidden spheres behind crude lids.
+   Put failures in silhouette, proportions, bad skin weights, pinching, stretching,
+   intersections, and pose—not in all-over faceting, puppet assembly, clay lumps, or
+   disconnected parts.
+   For animals, reduce geometry only slightly but suppress anatomical muscle design:
+   remove readable shoulder blades, pectoral divisions, rib/abdomen planes, haunch
+   muscles, tendons, and athletic limb taper. Use a more uniform barrel/ellipsoid torso
+   and simpler limbs with fewer thickness changes. Shoulders and hips remain continuous
+   but broad, flat, and poorly resolved. The animal must not look muscular, powerful,
+   athletic, or like a low-poly anatomy study.
+   Background terrain, foliage, buildings, props, and architecture remain visibly faceted low-poly.
+2. **Normal continuous clothing simplification:** do not reconstruct source tailoring,
+   but preserve a believable basic garment relationship to the body.
+   Preserve at most a broad category and one color cue, such as “red short outfit” or
+   “white long garment.” Merge top, collar, placket, belt, sash, skirt, sleeves, trousers,
+   cuffs, and decorative layers into one simplified garment or a few continuous pieces.
+   Retain a basic shoulder line, armhole/underarm transition, sleeve-to-arm continuity,
+   waist/hip volume, and a plausible opening or hem where the garment category needs it.
+   Delete embroidery, trim, elaborate lapels, fine folds, closures, layered
+   hems, accurate sleeve shapes, tailoring, and costume-specific silhouette. A shirt may
+   become one crude T-shirt-like mass; trousers become a simple continuous pelvis with
+   two legs; a robe becomes one plain long garment mass with integrated sleeves. Prefer
+   the fastest beginner shortcut over faithful reconstruction, but never turn clothing
+   into a rigid barrel, bucket, tube suit, detached sleeve system, or wooden-puppet shell.
+   Keep it bump-free, stiff, poorly fitted, with only local body intersections.
+3. **Immediate design reset:** before modeling details, break the source composition,
+   styling, makeup, costume design, attractive silhouette, and pose solution. Restage
+   spacing and overlap loosely if that makes the scene simpler. Actively remove attractiveness, elegance, heroic
+   bearing, clean silhouette design, and appealing facial anatomy. Build the face as
+   poorly resolved parts: flattened human-like eye openings, heavy half-closed upper
+   lids, unequal eyelid heights, small pupils aimed at unrelated targets, a wedge or
+   button nose, a crooked mouth slit,
+   and nearly absent cheek/lip shaping. Do not merely simplify a beautiful source face;
+   replace its aesthetic logic with a clumsy generic amateur face while preserving
+   only broad identity anchors such as age category, one hair cue, one outfit color,
+   and subject role. Makeup, hair ornaments, garment construction, and styling details
+   are disposable. The result should look blank, foolish, confused, and
+   unintentionally comic rather than cute, handsome, elegant, or fashionably stylized.
+4. **Proportions:** break source-faithful anatomy while keeping subject category and
+   action readable. Prefer visibly mismatched assembled parts over elegant caricature.
+5. **Pose and rigging:** preserve only the action verb, not the source pose solution.
+   Re-stage the body as a crude symbolic gesture: one limb points or lifts, another
+   holds, but there is no convincing force chain, counterbalance, weight transfer,
+   contact pressure, or coordinated torso response. Make it mechanically wrong.
+   Use locked torsos, kinked elbows, elevated shoulders, straight wrists, planted feet,
+   poor balance, floating hands, and no counter-pose. Add two to four obvious skeletal
+   or skin-weight failures: shoulder rotation drags the chest or collar; elbow bending
+   collapses or balloons the forearm; wrist rotation twists the entire forearm; hip
+   motion fails to tilt the pelvis; knee bending pulls the thigh or garment incorrectly;
+   a hand follows the wrong arm axis; sleeves lag behind or intersect the limb; a raised
+   leg has no supporting-body compensation; a kneeling body floats without weight.
+6. **Collision:** show a small number of intentional mesh penetrations at shoulders,
    upper arms, elbows, sleeves, garments, fur, hands, or held props when plausible.
-5. **Faces and gaze:** reuse simple eye construction; allow unequal eye size,
-   slightly off-center pupils, imperfect gaze alignment, stiff lids, flat mouth
-   slits, and frozen expressions. Keep intent readable, not professionally acted.
-6. **Materials:** use diffuse/base color as the dominant or only material channel.
-   Remove normal, displacement, subsurface, clearcoat, layered roughness, fabric,
-   skin, fur, and realistic reflection models. Use tiny blurry maps, seams, UV
-   stretching, mirrored details, crude painted shadows, flat matte areas, and a few
-   wrongly shiny patches. Materials on nearby objects may respond inconsistently.
-7. **Repetition:** visibly tile textures and reuse a very small library of trees,
+7. **Faces and gaze:** treat eyes as the primary failure signal, but default to a crude
+   human-like construction rather than two exposed cartoon balls. Place simple eyeballs
+   mostly inside the head behind shallow eye sockets and thick flat eyelids. Use drooping
+   half-closed upper lids, unequal opening heights, weak lower lids, small pupils placed
+   too low or too far sideways, failed convergence, and an unfixed gaze. Show only a
+   moderate amount of sclera; avoid surprised wide-open whites. Brows sit too high or
+   respond weakly to the lids. The result should feel sleepy, vacant, slow, foolish,
+   and absent-minded rather than startled, cute, alert, or professionally acted. Use
+   exposed round ball eyes only when the source species or explicit user request needs them.
+8. **Materials and relief:** separate fur from every other material. Hair and fur
+   remain plain polygonal masses and may receive a cheap badly scaled bump/normal map
+   made from many short irregular tapered fur-stroke marks baked into the surface.
+   Combine shallow recessed dashes with very low soft ridges; use medium but uneven
+   density, with local sparse and crowded patches. Give the marks a loose directional
+   flow around the face, neck, torso and limbs, but allow cheap UV rotation, seams,
+   mirroring and stretching between body regions. Individual strokes stay short,
+   blurry and low-profile; they never become real fibers or affect the silhouette.
+   The fur illusion must come exclusively from a cheap bump/normal channel on an
+   otherwise flat solid-color diffuse material. Do not paint hair strokes into albedo,
+   add roughness fibers, displace vertices, or create any fur geometry. If a separate
+   material reference is supplied, borrow only the micro-relief pattern; never import
+   its character design, anatomy, colors, pose, composition, environment, or lighting.
+   Match the look of a low-resolution amateur fur bump/normal map—not holes, pores,
+   craters, scratches, carved lines, worms, leather embossing, rock or coral. Do not add strand, shell,
+   groom, plush, or volumetric-fur effects. Clothing, skin, scales, wood, and props
+   should use flat low-resolution diffuse color with little or no bump, simple uniform
+   roughness, and weak specular. Garments must look smooth, thin, flat, and cheaply shaded.
+9. **Repetition:** visibly tile textures and reuse a very small library of trees,
    posts, rocks, buildings, props, hair cards, cloth maps, or eye assets.
-8. **Background:** remove incidental detail. Repeat a few primitive assets with
-   minimal variation; avoid rich set dressing or individually authored objects.
-9. **Lighting:** use one blunt directional/overhead-front light plus weak flat
-   ambient fill. Allow clipped highlights, muddy dark patches, hard low-resolution
-   shadows, weak contact, and exposure mismatch between nearby subjects.
-10. **Rendering:** use weak antialiasing, limited texture filtering, simple shadow
+10. **Background textures:** do not leave trees, grass, mountains, soil, wood, rocks,
+   or buildings as clean solid-color surfaces. Cover faceted background assets with
+   a few low-resolution repeated diffuse textures at a relatively large tile scale,
+   so repetition is discoverable but not wallpaper-like. Map them in local object XYZ space
+   without global or world-scale normalization, automatic fitting, or adaptive scale.
+   Object scaling should occasionally distort the maps: some tall objects stretch the
+   pattern vertically along Z, some wide objects stretch it on X/Y, and neighboring
+   copies may use inconsistent texel density. Add small hue/value offsets between
+   repeated assets. Keep seams, tiling, mirroring, and scale errors noticeable on
+   inspection but subordinate to the characters. These are color textures only.
+11. **Cheap tree construction:** when trees are present, build each canopy from three
+   to six thin vertical ellipse-shaped foliage cards intersecting around one crude
+   trunk prism. Rotate the cards around the vertical axis to fake volume. Reuse one
+   or two enlarged low-resolution leaf diffuse textures; preserve visible card
+   intersections, repeated silhouettes, hard or jagged alpha edges, inconsistent
+   opacity, and weak fake depth. Do not create solid detailed crowns, individual
+   leaves, procedural foliage, or a technically correct billboard system.
+12. **Conditional rain:** never invent rain. Only when rain exists in the source or
+   the user explicitly requests it, render sparse ugly white or pale-gray thin straight
+   line segments with nearly uniform width, length, direction, and opacity. Use simple
+   screen-facing streaks with weak depth ordering. No droplets, splashes, ripples,
+   wet-surface reflections, rain mist, refraction, volumetric atmosphere, or cinematic blur.
+13. **Color:** retain clean, recognizable source colors with moderate saturation and
+   readable separation. Do not use gray-brown grime, global desaturation, dirty
+   overlays, or flat color as shortcuts for low production value.
+14. **Flat failed lighting:** use one broad, unshaped neutral direct light with basic
+   hard or uniformly soft shadows. Faces and bodies should have little modeling,
+   no delicate gradients, no attractive highlight control, no bounce, no rim, and
+   no cinematic separation. Treat the sky as a pasted image with no global illumination.
+15. **Rendering:** use weak antialiasing, limited texture filtering, simple shadow
    maps, fine noise, mild color fringe, and modest screen-capture softness.
 
 Do not use darkness, horror grading, VHS damage, heavy JPEG corruption, or mosaic
@@ -165,15 +307,27 @@ as shortcuts. “Bad” must come primarily from limited scene production.
 Read [references/prompt-blueprint.md](references/prompt-blueprint.md) for the full
 schema and reusable clauses. Construct prompts in this order:
 
-1. Declare source-based primitive 3D reconstruction.
-2. Lock semantic/compositional anchors while releasing exact pose, silhouette, and anatomy.
-3. Set an extremely low polygon budget and deliberately broken proportions.
-4. Specify stiff failed rigging plus one to three plausible clipping locations.
-5. Specify crude faces, eyes, hair, hands, paws, and joints.
-6. Require very-low-resolution maps, obvious tiling, and heavy asset reuse.
-7. Strip background detail to repeated scene primitives.
-8. Specify naive lighting, uneven exposure, and basic render limitations.
-9. State ratio, text behavior, and source-tailored prohibitions.
+1. Declare source-based badly produced bootleg-CGI reconstruction.
+2. Lock only count/type, relationship, action verb, and one or two color cues; immediately
+   release composition, crop, spacing, exact pose, silhouette, costume, makeup, and styling.
+3. Set a smooth-shaded coarse continuous character mesh; ban visible character triangle
+   fields, voxel/block forms, separated primitive limbs, and puppet/mannequin joints.
+4. Apply the one-year-student rule: simplify every nonessential element. Reduce clothing
+   to one normal continuous garment mass or a few integrated pieces while keeping basic
+   shoulder, sleeve, waist, and hip logic; ban faithful tailoring, rigid barrel suits,
+   puppet construction, clay sculpting, and decorative recovery.
+5. Specify two to four visible bone-weight/rig hierarchy failures plus local clipping.
+6. Make human-like half-lidded, vacant, badly aimed eyes the dominant facial signal;
+   avoid default exposed ball eyes and simplify hands, paws, and joints.
+7. Apply medium uneven short tapered baked-fur grooves and soft ridges only to
+   polygonal fur/hair, with crude local direction and occasional UV stretch; keep
+   clothing and other materials bump-free.
+8. Strip background detail to repeated faceted primitives, then add low-resolution
+   enlarged tiled diffuse maps with limited color variation and occasional Z stretching.
+9. If trees exist, build their crowns from intersecting vertical ellipse foliage cards.
+10. If source-evidenced or requested rain exists, reduce it to ugly white line streaks.
+11. Keep source-led color clean, then disconnect foreground lighting from the sky backdrop.
+12. State ratio, text behavior, and source-tailored prohibitions.
 
 Prefer observable flaws over labels such as “ugly” or “bad quality”. Mention a
 named game, engine, or film only when the user asks; always translate the name into
@@ -185,16 +339,50 @@ Read [references/quality-and-recovery.md](references/quality-and-recovery.md) be
 judging output. Retry whenever the result is too faithful, attractive, detailed,
 varied, or professionally lit. In particular, reject results where:
 
-- geometry uses many small facets or preserves smooth source-faithful silhouettes;
+- character geometry becomes refined or professionally subdivided, or instead collapses
+  into voxel/block shapes, Minecraft-like construction, large exposed retro triangles,
+  Virtua Fighter/Tomb Raider-era character faceting, or deliberate vintage-game style;
+- faces, buns, limbs, or clothes show dense readable polygon facets instead of
+  continuously shaded primitive surfaces;
+- limbs are separate cylinders joined by rings, sockets, gaps, exposed hinges, ball
+  joints, or abrupt wooden-puppet connections;
+- garments become rigid barrels, buckets, tube suits, detached sleeves, or puppet shells;
+- garments preserve recognizable tailoring, layered construction, lapels, sash structure,
+  decorative hems, natural folds, or source-specific costume design instead of collapsing
+  into one simplified continuous garment mass or a few integrated pieces;
+- characters resemble clay, plasticine, stop-motion clay figures, hand-sculpted blobs,
+  kneaded surfaces, fingerprints, or uniformly lumpy organic masses;
+- regular parts such as hair buns, hidden eyeball bases, sleeves, trouser legs, or robe masses are
+  irregularly polygon-fitted when a simple sphere, tube, strip, cone, or shell would work;
+- composition, makeup, hairstyle details, or costume silhouette remain attractively
+  source-faithful rather than being simplified and crudely restaged;
+- poses remain biomechanically coordinated or lack two to four obvious bone-weight,
+  joint-hierarchy, pelvis, shoulder, elbow, wrist, hip, or knee failures;
 - human or animal proportions remain correct, flattering, or source-faithful;
+- animals retain readable shoulder blades, chest/abdominal groups, haunch muscles,
+  tendons, athletic limb taper, or a powerful anatomical silhouette;
 - poses retain natural balance, joint flow, weight transfer, or clean contact;
 - a contact-rich image offers plausible intersections but all garments, limbs, fur,
   and held objects remain perfectly collision-free;
-- faces retain polished animation acting or appealing aligned eyes;
-- textures are clean, unique, high-resolution, or subtly varied;
+- faces retain polished animation acting, intelligent focus, or appealing aligned eyes;
+- eyes become exposed oversized cartoon balls, surprised wide-open whites, cute googly
+  eyes, or alert expressive anime eyes instead of recessed half-lidded vacant eyes;
+- fur bump is absent or too subtle, becomes round holes/craters, long scratches, dense
+  continuous noise, raised worms/swirls, embossed leather, or chunky rock/coral; fur gains strand/plush effects,
+- a material-only reference changes subject identity, geometry, pose, clothing,
+  composition, background, palette, or lighting;
+  or clothing/background gains visible bump relief;
 - background objects are numerous, detailed, and individually modeled;
-- lighting uses cinematic separation, rim light, soft bounce, or volumetric depth;
-- geometry resembles fashionable designer low-poly art;
+- background trees, grass, mountains, soil, wood, rocks, or buildings use clean solid
+  colors or perfectly normalized UV scale; repetition also fails when it becomes a
+  dominant wallpaper pattern with identical contrast on every object;
+- present trees become solid detailed crowns, individual leaves, or refined foliage
+  instead of intersecting vertical ellipse cards with visible low-budget construction;
+- rain is invented when absent, or source-evidenced rain becomes realistic droplets,
+  splashes, wet reflections, mist, refraction, or cinematic streaks;
+- colors become muddy, gray-brown, desaturated, or uniformly flat;
+- sky/background color correctly produces matching global illumination, bounce, and reflections;
+- lighting contains delicate tonal modeling, cinematic separation, rim light, soft bounce, or volumetric depth;
 - the effect is only blur, pixelation, noise, or color grading.
 
 On retry, change only the failed dimension and restate all anchor locks. Stop after
@@ -211,18 +399,21 @@ For prompt-only requests, return one production prompt and one negative block.
 
 ```text
 /niu-lai-translator
-启用牛来低模转译器
-把这张图重制成制作能力很差的早期 3D 动画截图
+启用牛来粗制 CGI 转译器
+把这张图重制成建模、绑定、材质和灯光都很差的廉价 CGI
 ```
 
 ```yaml
 skill: niu-lai-translator
-preset: primitive_folk_cgi
+preset: crude_bootleg_cgi
 reconstruction_strength: extreme
-identity_lock: medium
+identity_lock: low_to_medium
+anchor_lock: minimal_semantic
+simplification_policy: simplify_everything_nonessential
+clothing_geometry: simplified_continuous_garments
 asset_reuse: heavy
-lighting: naive_single_light
+lighting: unrelated_neutral_key
 ratio: source_ratio
 ```
 
-**不是做得像“低模艺术”，而是像真的只有少量模型、少量贴图、简单灯光和有限技术。**
+**不是做成“低模艺术”，而是像建模、绑定、材质和灯光各自都做得很差，而且彼此没有协调。**
