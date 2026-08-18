@@ -43,11 +43,16 @@ not conventional visual polish.
   but shoulder blades, chest/abdomen groups, haunch muscles, tendons and athletic limb
   taper are not readable. Barrel/ellipsoid torsos, uniform limbs and broad flat
   shoulder/hip transitions replace powerful or anatomy-study silhouettes.
-- **Failed pose and rigging:** only the action verb survives; the exact source pose does
-  not. Limbs perform an uncoordinated symbolic gesture while joint flow, balance,
-  weight transfer, torso compensation, and contact are stiff, simplified, or wrong.
+- **Failed pose and rigging:** broad pose topology survives: who stands/sits, broad
+  facing, the main acting limb, and prop ownership remain readable. Exact joint flow,
+  balance, weight transfer, torso compensation, and contact become stiff, simplified,
+  or wrong. The result corrupts the source blockout instead of inventing a newly
+  choreographed expressive gesture.
   Two to four obvious bone/weight failures are readable at shoulders, elbows, wrists,
   pelvis, hips, knees, hands, sleeves, raised legs, or kneeling support.
+- **No invented choreography:** degradation does not add waves, crouches, shy leans,
+  heroic reaches, dance-like curves, flourishes, or theatrical reactions absent from
+  the source. Such additions are polished character acting even when the pose is odd.
 - **Visible collision failure:** when plausible contact or moving-joint zones exist, two to four
   local mesh intersections are visible around sleeves, elbows, shoulders, garments,
   hands, held props, fur, or adjacent bodies. Perfectly clean collision fails; facial
@@ -120,15 +125,16 @@ Score each dimension 0–2. Accept at 22/28 or above only when all hard checks p
 
 ### Too faithful, attractive, or polished
 
-Retry with: “Lock only count/type, relationship, action verb, indispensable prop, and
-one or two color cues. Release and crudely restage composition, crop, spacing, styling,
-makeup, costume construction, exact pose, silhouette, anatomy, and clean collision.
+Retry with: “Lock count/type, relationship, action verb, indispensable prop, one or two
+color cues, broad scene order, and broad pose topology. Release exact crop, spacing,
+joint angles, balance, styling, makeup, costume construction, attractive silhouette,
+anatomy, and clean collision.
 Discard fine likeness and reduce modeling competence, garment detail,
 unique assets, and material coherence. Keep character faces sparsely modeled but
 smooth-shaded, and keep the environment visibly faceted low-poly. Replace appealing
 faces with recessed half-lidded human-like eyes, unequal openings, low/side pupils,
 failed convergence, a wedge nose, crooked mouth slit, and almost no cheek/lip shaping.
-Preserve only the action verb and restage the limbs.”
+Keep existing limb responsibilities and make their rigging fail without adding new acting.”
 
 ### Characters become refined, voxel-like, or retro-faceted
 
@@ -161,11 +167,21 @@ parts awkward rather than elegantly caricatured.”
 
 ### Pose still looks natural
 
-Retry with: “Preserve only what the action means. Remove counter-pose and weight
-transfer, then add two to four visible failures: shoulder drags chest/collar, elbow
+Retry with: “Preserve broad pose topology and limb responsibility but remove the
+competent joint solution. Keep who stands/sits, broad facing, the main acting limb and
+prop ownership. Do not add a new wave, crouch, lean, flourish or reaction. Remove
+counter-pose and weight transfer, then add two to four visible failures: shoulder drags chest/collar, elbow
 collapses or balloons, wrist twists entire forearm, hip fails to tilt pelvis, knee
 pulls thigh/garment, hand follows wrong axis, sleeve lags/intersects, raised leg lacks
 support compensation, or kneeling body floats without weight.”
+
+### Pose becomes newly choreographed or expressive
+
+Retry with: “Return to the source's broad pose blockout. Keep the same standing/sitting
+roles, broad facing, acting limb, prop ownership and simple group relationship. Remove
+all newly invented waves, crouches, shy leans, heroic reaches, dance-like curves,
+flourishes and deliberate character acting. Make the existing pose fail through rigid
+axes, missing torso compensation, bad weights and local clipping instead.”
 
 ### Garments and bodies remain collision-free
 
@@ -271,7 +287,8 @@ HUD, or new props.”
 ## Retry discipline
 
 1. Restate only minimal semantic anchors on every retry.
-2. Change only the failed dimension.
+2. Change only the failed dimension. When the user names a local correction, use the
+   latest approved image as the master and explicitly lock every unmentioned layer.
 3. Prefer further simplification over restoring source composition or wardrobe fidelity.
 4. Stop after two retries unless the user asks to continue.
 5. Disclose remaining hard failures rather than calling the result successful.

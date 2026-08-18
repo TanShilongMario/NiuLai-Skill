@@ -10,7 +10,7 @@ skill: niu-lai-translator
 preset: crude_bootleg_cgi | clean_bootleg_cgi | primitive_folk_cgi | sunlit_game_map | community_cgi_stage | rough_night_render
 reconstruction_strength: medium | high | extreme
 anchor_lock: minimal_semantic | broad
-composition_lock: loose_restage_allowed | broad
+composition_lock: broad_blocking | loose_restage_allowed | broad
 identity_lock: low_to_medium | medium | high
 detail_budget: low | very_low
 skill_level_reference: one_year_animation_student | inexperienced_generalist
@@ -34,8 +34,8 @@ background_geometry: visibly_faceted_low_poly | primitive_low_poly
 face_geometry: clumsy_asymmetric | lumpy_rounded | angular_readable
 gaze_quality: vacant_badly_aimed | stiff_misaligned | crude_readable
 proportion_fidelity: deliberately_broken | loosely_source_based
-pose_lock: semantic_action_only | broad_pose
-pose_quality: symbolic_gesture_failed_rig | crude_rigid | source_faithful
+pose_lock: broad_pose_topology | semantic_action_only | broad_pose
+pose_quality: source_blockout_failed_rig | symbolic_gesture_failed_rig | crude_rigid | source_faithful
 rig_failure_strength: obvious | strong | moderate
 bone_weight_errors: 2_to_4_major_joints | sparse | none
 collision_quality: visible_clipping | imperfect_contact | clean
@@ -79,10 +79,12 @@ ratio: source_ratio | 1:1 | 3:4 | 4:3 | 9:16 | 16:9
 Rebuild the supplied image as badly produced, low-budget bootleg CGI. This is not
 a blur filter, compression pass, polygon overlay, or fashionable low-poly illustration.
 
-MINIMAL ANCHOR LOCK — Preserve only [subject count/types], [relationship/action verb],
-[indispensable prop], and [one or two color cues]. Release source composition, crop,
-spacing, overlap, camera refinement, costume construction, makeup, styling, exact pose,
-silhouette, anatomy, and mesh separation. Recognition should come from roles and action,
+MINIMAL ANCHOR LOCK — Preserve [subject count/types], [relationship/action verb],
+[indispensable prop], [one or two color cues], broad left/right or depth order, and
+broad pose topology: who stands/sits, which limb performs the main action, and who
+holds or touches the indispensable prop. Release exact crop, spacing, joint angles,
+camera refinement, costume construction, makeup, styling, attractive silhouette,
+anatomy, and clean mesh separation. Recognition should come from roles and action,
 not faithful visual design.
 
 DETAIL BUDGET — Use [preset], [reconstruction_strength], and [detail_budget].
@@ -141,9 +143,12 @@ head/body ratio, neck length, torso width, joint size, muzzle size, paw/hoof sca
 and animal body mass. Prefer awkward assembled parts over elegant caricature.
 
 POSE AND RIGGING FAILURE — Use [pose_lock], [pose_quality], [rig_failure_strength],
-and [bone_weight_errors]. Preserve only the action verb, not the source pose solution.
-Restage it as a crude symbol made from independently aimed limbs. Remove force chain,
-contact pressure, counter-pose, balance, and weight transfer, then add two to four
+and [bone_weight_errors]. Preserve broad pose topology and limb responsibility while
+discarding the source's competent joint solution. Keep who stands/sits, broad facing,
+the main acting limb, and prop ownership. Use that source stance only as a crude
+blockout, then remove force chain, contact pressure, counter-pose, balance, and weight
+transfer. Do not invent a new wave, crouch, lean, flourish, dance-like curve, or
+expressive reaction simply to make the pose different. Add two to four
 readable failures: shoulder rotation drags chest/collar; elbow bend collapses or
 balloons; wrist rotation twists the whole forearm; hip motion fails to tilt pelvis;
 knee motion pulls thigh/garment; hand follows wrong axis; sleeve lags/intersects;
@@ -245,9 +250,10 @@ Use only when the editor follows source images reliably:
 
 ```text
 Rebuild the supplied image like a one-year animation student's cheap CGI assignment.
-Lock only subject count/type, relationship, action verb, indispensable prop, and one
-or two color cues. Immediately release and crudely restage composition, crop, spacing,
-makeup, styling, costume design, exact pose, silhouette, and anatomy. Simplify every
+Lock subject count/type, relationship, action verb, indispensable prop, one or two
+color cues, broad subject order, and broad pose topology. Keep who stands/sits, the
+main acting limb, and prop ownership, but release exact joint angles, balance, contact,
+crop, spacing, makeup, styling, costume design, attractive silhouette, and anatomy. Simplify every
 nonessential element. Use
 smooth-shaded coarse continuous character meshes. Blend simple blockout forms into
 connected organic limbs and joints; no sockets, rings, hinges, ball joints, gaps,
@@ -260,8 +266,8 @@ Actively discard attractive facial design and elegant silhouettes. Rebuild faces
 recessed human-like eyes behind unequal drooping half-closed lids, small low/side pupils
 with failed convergence, a wedge/button nose, a crooked mouth slit, and almost no
 cheek/lip shaping; make them sleepy, blank, foolish, confused,
-and unintentionally comic rather than cute or handsome. Preserve only the action verb,
-then restage the body as an uncoordinated symbolic gesture. Deliberately distort
+and unintentionally comic rather than cute or handsome. Use the source pose as a crude
+blockout, then corrupt its joint execution without inventing new expressive gestures. Deliberately distort
 human/animal proportions. Make the torso rigid, joints
 single-axis, shoulders too high, elbows kinked, wrists straight, balance poor, and
 contact weak. Add two to four obvious bone-weight failures plus two to four intersections at source-evidenced contact
@@ -294,6 +300,8 @@ subjects, props, logos, cows, or horns.
 ```text
 Avoid: fine likeness; source-faithful proportions; natural counter-pose; correct
 weight transfer; flexible realistic joints; perfectly separated garments and limbs;
+newly invented waves, crouches, leans, flourishes, dance-like curves, theatrical reactions,
+or expressive choreography absent from the source;
 separated cylinder limbs; exposed joint rings; sockets; hinges; ball joints; mannequin
 articulation; wooden-puppet seams; rigid barrel clothing; bucket torsos; tube suits;
 detached sleeves; clothing that ignores shoulders, underarms, waist, or hips;
@@ -327,13 +335,29 @@ JPEG damage; VHS; CRT; glitch; invented text, UI, logos, characters, or props.
 - `preserve_exact`: quote exact source text and inspect character by character.
 - `user_text`: include only exact user-supplied text; invent nothing.
 
+## Scoped follow-up edit
+
+When the user names only one or more dimensions to change, begin the prompt with:
+
+```text
+SCOPED EDIT — Use the latest approved image as the master. Change only [named
+dimensions]. Lock subject identity/count, broad and exact pose unless pose is named,
+proportions, clothing, materials, composition, camera, background assets, color,
+lighting, and every other unmentioned layer. A local correction is not permission to
+reconstruct, beautify, or reinterpret the image.
+```
+
+Restate the relevant failed dimension after this lock. On retry, include the same lock
+again and change no additional layer.
+
 ## Source recipes
 
 ### Portrait or group
 
 Use `community_cgi_stage` for groups and `crude_bootleg_cgi` for a single figure.
-Lock count, relationships, action verbs, one hair cue, and one or two color cues.
-Freely simplify spacing, crop, styling, and costume construction. Reuse eyes, skin,
+Lock count, relationships, action verbs, broad subject order, broad pose topology,
+one hair cue, and one or two color cues. Simplify crop, styling, and costume construction
+without inventing new expressive gestures. Reuse eyes, skin,
 hair, and cloth maps. Build hair as sparse polygonal masses with badly scaled bump
 relief. Simplify garments into continuous normal clothing masses, smooth and bump-free,
 with basic shoulder/sleeve/waist/hip logic. Distort ratios,
@@ -342,9 +366,10 @@ sleeve/arm/shoulder clipping when contact exists.
 
 ### Animal scene
 
-Use `crude_bootleg_cgi`. Lock species, count, semantic action, markings, and composition.
-Change body ratios, leg length, paw/hoof scale, neck and muzzle proportions, and
-balance. Use rigid joints and local fur/harness or limb/body clipping where plausible.
+Use `crude_bootleg_cgi`. Lock species, count, semantic action, markings, broad subject
+order, and broad pose topology. Change body ratios, leg length, paw/hoof scale, neck
+and muzzle proportions, joint execution, and balance without adding new character
+acting. Use rigid joints and local fur/harness or limb/body clipping where plausible.
 Build fur as sparse polygonal masses with cheap short-stroke baked bump relief; keep scales
 flat and bump-free. Make the eyes vacant and badly aimed. Reduce facial refinement
 and keep the environment visibly faceted low-poly.

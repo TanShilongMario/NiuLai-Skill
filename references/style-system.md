@@ -73,8 +73,12 @@ primitive shortcut for every nonessential decision.
 
 ### 3. Failed pose and rigging
 
-- Preserve only the action verb while replacing the exact pose with a crude symbolic
-  gesture made from independently aimed limbs.
+- Preserve broad pose topology while replacing competent joint execution with a crude
+  failed rig. Keep who stands/sits, broad facing, the main acting limb, and prop
+  ownership. Use the source stance as a blockout rather than a pose to reproduce exactly.
+- Degrade through rigid axes, bad weights, absent torso compensation and local clipping.
+  Do not invent a new wave, crouch, lean, flourish, dance-like curve, or expressive
+  reaction merely to demonstrate that the pose has changed.
 - Remove force chain, contact pressure, coordinated torso response, and any convincing
   reason the body could hold or balance the pose.
 - Use locked torsos, shoulders lifted too high, elbows kinked on one axis, wrists
@@ -203,7 +207,7 @@ For general images, animals, people, landscapes, objects, and mixed scenes.
 - extreme reconstruction; minimal semantic lock; low-to-medium identity lock;
 - one-year-animation-student competence ceiling and simplify-everything policy;
 - clothing simplified into continuous normal garment masses with basic body logic;
-- broken human/animal proportions, failed rigid posing, and local visible clipping;
+- broken human/animal proportions, source-blockout failed rigging, and local visible clipping;
 - medium uneven short baked-fur grooves/soft ridges only on hair/fur; flat bump-free garments;
 - obvious texture tiling and heavy asset reuse;
 - sparse faceted background with enlarged low-resolution diffuse tiles, limited
@@ -259,9 +263,9 @@ Use only for genuine night sources or explicit night requests.
 
 | Source | Lock | Deliberately reduce | Reuse |
 |---|---|---|---|
-| Portrait | count, role, action verb, one hair/color cue | composition, crop, styling, garment design, silhouette, ratios, exact pose, face planes, eye alignment | eye/skin/hair maps |
-| Group | count, relationships, action verbs, one or two color cues | spacing, overlap, composition, costumes, proportions, exact joints, contact, fingers | eyes, skin, cloth, hair assets |
-| Animal | species, markings, semantic action, muzzle direction | body ratio, leg/paw scale, balance, fur collision, joints, facial refinement | fur/scale/eye maps |
+| Portrait | count, role, action verb, broad facing/pose topology, one hair/color cue | crop, styling, garment design, silhouette, ratios, exact joints, balance, face planes, eye alignment | eye/skin/hair maps |
+| Group | count, relationships, action verbs, broad order/pose topology, one or two color cues | exact spacing, costumes, proportions, joint execution, balance, contact, fingers | eyes, skin, cloth, hair assets |
+| Animal | species, markings, semantic action, broad pose topology, muzzle direction | body ratio, leg/paw scale, balance, fur collision, joint execution, facial refinement | fur/scale/eye maps |
 | Landscape | horizon, landform, palette | foliage variety, rock detail, atmosphere | trees, bushes, grass, rocks |
 | Architecture | massing, openings, perspective | trim, glass, facade detail, clutter | wall, roof, ground modules |
 | Food/object | silhouette, count, arrangement | curves, labels, microtexture, reflections | surface and label-free maps |
@@ -270,8 +274,9 @@ Use only for genuine night sources or explicit night requests.
 
 - `medium`: recognizable and restrained; use only when likeness dominates.
 - `high`: every object reads as cheaply rebuilt CGI; detail remains moderately faithful.
-- `extreme` (default): preserve only minimal subject semantics; freely restage composition
-  and release costume design, styling, exact pose, silhouette, anatomy, and collision. Use smooth primitive
+- `extreme` (default): preserve minimal subject semantics plus broad scene blocking and
+  pose topology; release costume design, styling, exact joint angles, balance, attractive
+  silhouette, anatomy, and clean collision. Use smooth primitive
   character geometry, visibly faceted backgrounds, broken proportions,
   stiff failed rigging, two-to-four local penetrations, cheap baked short-fur bump, flat garments,
   enlarged low-resolution background maps with occasional local-axis stretching, clean color, vacant failed

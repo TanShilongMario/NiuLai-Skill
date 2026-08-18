@@ -53,14 +53,20 @@ Track this sequence:
 - Use an image-edit tool that receives the source image. Include every target image
   through the tool's supported reference input.
 - Treat this as reconstruction, not compression, pixelation, faceting, or a low-poly overlay.
+- Treat explicit follow-up scope as a hard edit mask. If the user says to change only
+  eyes, trees, fur, lighting, pose, or another named dimension, use the latest approved
+  image as the master and lock every unmentioned subject, pose, proportion, material,
+  composition, asset, color, and lighting decision. Do not use a local correction as
+  permission to rebuild or beautify the rest of the image.
 
 ## Analyze minimal anchors internally
 
 Identify without reporting every item unless asked:
 
 - **Subjects:** count, broad type, relationship, role, action verb, and indispensable prop.
-- **Loose composition:** retain only enough left/right or depth logic to keep the scene
-  readable; crop, camera height, spacing, overlap, relative scale, and silhouette may change.
+- **Broad blocking:** retain left/right or depth order, standing/sitting roles, the main
+  acting limb, and indispensable contacts. Crop, camera height, exact spacing, relative
+  scale, exact joint angles, and attractive silhouette may change.
 - **Scene:** only the major terrain, architecture, or stage masses required for
   the image to remain recognizable.
 - **Color cues:** retain one or two dominant source colors; exact costume distribution may change.
@@ -79,7 +85,7 @@ Use `crude_bootleg_cgi` unless the user requests a gentler translation. Read
 preset: crude_bootleg_cgi
 reconstruction_strength: extreme
 anchor_lock: minimal_semantic
-composition_lock: loose_restage_allowed
+composition_lock: broad_blocking
 identity_lock: low_to_medium
 detail_budget: low
 skill_level_reference: one_year_animation_student
@@ -103,8 +109,8 @@ background_geometry: visibly_faceted_low_poly
 face_geometry: clumsy_asymmetric
 gaze_quality: vacant_badly_aimed
 proportion_fidelity: deliberately_broken
-pose_lock: semantic_action_only
-pose_quality: symbolic_gesture_failed_rig
+pose_lock: broad_pose_topology
+pose_quality: source_blockout_failed_rig
 rig_failure_strength: obvious
 bone_weight_errors: 2_to_4_major_joints
 collision_quality: visible_clipping
@@ -149,12 +155,16 @@ that correctly inherits the sky are failures unless requested.
 
 ## Preserve only minimal meaning
 
-- Strictly preserve only subject count/type, relationship, action verb, indispensable
-  prop, and one or two color cues. Composition, crop, camera, spacing, overlap, costume
-  design, makeup, styling, and attractive silhouette may be broken and crudely restaged.
-- Preserve what the action means, not the exact source pose. A wave should remain a
-  wave and an embrace an embrace, but elbows, shoulders, wrists, knees, weight,
-  balance, and torso twist should become stiff, simplified, and slightly wrong.
+- Strictly preserve subject count/type, relationship, action verb, indispensable prop,
+  one or two color cues, broad left/right or depth order, and broad pose topology: who
+  stands or sits, which limb performs the main action, and which subject contacts a prop
+  or another subject. Crop, camera refinement, exact spacing, exact joint angles,
+  costume design, makeup, styling, and attractive silhouette may be simplified.
+- Preserve the source pose only as a crude blockout, then make its execution fail. A
+  wave remains the same arm's wave and a held prop remains in the same subject's hand,
+  but elbows, shoulders, wrists, knees, weight, balance, contact and torso compensation
+  become stiff, simplified, and wrong. Do not invent a new wave, crouch, lean, flourish,
+  or expressive reaction merely to prove that the pose changed.
 - Preserve only broad identity anchors such as species/age category, one hair cue,
   one outfit color, and subject role. Garment construction, makeup, ornaments, exact
   hair design, source silhouette, and body proportions are disposable.
@@ -225,10 +235,14 @@ Apply all layers together:
    unintentionally comic rather than cute, handsome, elegant, or fashionably stylized.
 4. **Proportions:** break source-faithful anatomy while keeping subject category and
    action readable. Prefer visibly mismatched assembled parts over elegant caricature.
-5. **Pose and rigging:** preserve only the action verb, not the source pose solution.
-   Re-stage the body as a crude symbolic gesture: one limb points or lifts, another
-   holds, but there is no convincing force chain, counterbalance, weight transfer,
-   contact pressure, or coordinated torso response. Make it mechanically wrong.
+5. **Pose and rigging:** preserve broad pose topology and limb responsibility while
+   discarding the source's competent joint solution. Use the source stance as a crude
+   blockout: keep who stands/sits, the main acting limb, held-prop ownership, and broad
+   facing direction, then remove the force chain, counterbalance, weight transfer,
+   contact pressure, and coordinated torso response. Pose degradation comes from bad
+   deformation and rigging—not from newly choreographing an expressive alternative.
+   Do not add waves, crouches, shy leans, heroic reaches, dance-like curves, or other
+   gestures absent from the source unless the user explicitly requests free restaging.
    Use locked torsos, kinked elbows, elevated shoulders, straight wrists, planted feet,
    poor balance, floating hands, and no counter-pose. Add two to four obvious skeletal
    or skin-weight failures: shoulder rotation drags the chest or collar; elbow bending
@@ -308,8 +322,9 @@ Read [references/prompt-blueprint.md](references/prompt-blueprint.md) for the fu
 schema and reusable clauses. Construct prompts in this order:
 
 1. Declare source-based badly produced bootleg-CGI reconstruction.
-2. Lock only count/type, relationship, action verb, and one or two color cues; immediately
-   release composition, crop, spacing, exact pose, silhouette, costume, makeup, and styling.
+2. Lock count/type, relationship, action verb, one or two color cues, broad scene order,
+   and broad pose topology; release exact crop, spacing, joint angles, balance, attractive
+   silhouette, costume construction, makeup, and styling.
 3. Set a smooth-shaded coarse continuous character mesh; ban visible character triangle
    fields, voxel/block forms, separated primitive limbs, and puppet/mannequin joints.
 4. Apply the one-year-student rule: simplify every nonessential element. Reduce clothing
@@ -358,6 +373,9 @@ varied, or professionally lit. In particular, reject results where:
   source-faithful rather than being simplified and crudely restaged;
 - poses remain biomechanically coordinated or lack two to four obvious bone-weight,
   joint-hierarchy, pelvis, shoulder, elbow, wrist, hip, or knee failures;
+- poses introduce new expressive gestures, theatrical reactions, waves, crouches,
+  leans, flourishes, or elegant curves instead of corrupting the source's broad pose
+  blockout and existing limb responsibilities;
 - human or animal proportions remain correct, flattering, or source-faithful;
 - animals retain readable shoulder blades, chest/abdominal groups, haunch muscles,
   tendons, athletic limb taper, or a powerful anatomical silhouette;
@@ -385,8 +403,9 @@ varied, or professionally lit. In particular, reject results where:
 - lighting contains delicate tonal modeling, cinematic separation, rim light, soft bounce, or volumetric depth;
 - the effect is only blur, pixelation, noise, or color grading.
 
-On retry, change only the failed dimension and restate all anchor locks. Stop after
-two retries unless the user asks to continue.
+On retry, change only the failed dimension and restate all anchor locks. For scoped
+follow-up edits, explicitly lock every unmentioned layer and use the latest approved
+image as the master. Stop after two retries unless the user asks to continue.
 
 ## Output
 
@@ -409,6 +428,7 @@ preset: crude_bootleg_cgi
 reconstruction_strength: extreme
 identity_lock: low_to_medium
 anchor_lock: minimal_semantic
+composition_lock: broad_blocking
 simplification_policy: simplify_everything_nonessential
 clothing_geometry: simplified_continuous_garments
 asset_reuse: heavy
